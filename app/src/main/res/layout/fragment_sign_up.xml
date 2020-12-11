@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.LoginFragment"
+    android:background="@drawable/login">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SIGN UP"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="#5b4bbd"
+        android:fontFamily="@font/manrope_extra_bold"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="30dp">
+
+    </TextView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/round_corners"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="280dp">
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="20dp"
+            android:textSize="20dp"
+            android:textColorHint="@color/white"
+            android:background="@color/transparent"
+            android:hint="Name">
+
+        </EditText>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/round_corners"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="330dp">
+
+        <EditText
+            android:id="@+id/edit_phone_no"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="20dp"
+            android:textSize="20dp"
+            android:inputType="number"
+            android:textColorHint="@color/white"
+            android:background="@color/transparent"
+            android:hint="Phone No.">
+
+        </EditText>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/round_corners"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="380dp">
+
+        <EditText
+            android:id="@+id/edit_otp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="20dp"
+            android:focusable="false"
+            android:textColorHint="@color/white"
+            android:background="@color/transparent"
+            android:textSize="20dp"
+            android:hint="OTP">
+
+        </EditText>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_signUp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/round_corners2"
+        android:layout_marginLeft="220dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="450dp"
+        android:text="SIGN UP"
+        android:textStyle="bold"
+        android:textSize="20dp">
+
+    </Button>
+
+    <Button
+        android:id="@+id/button_signUp_otp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="visible"
+        android:background="@drawable/round_corners2"
+        android:layout_marginLeft="220dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="450dp"
+        android:text="SEND OTP"
+        android:textStyle="bold"
+        android:textSize="20dp">
+
+    </Button>
+
+
+
+
+</RelativeLayout>
