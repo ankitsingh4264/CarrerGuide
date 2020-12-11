@@ -90,6 +90,8 @@
         android:layout_marginTop="450dp"
         android:text="send OTP"
         android:textStyle="bold"
+        android:fontFamily="@font/manrope_bold"
+        android:textColor="@color/white"
         android:textSize="20dp">
 
     </Button>
@@ -142,7 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="didn't have an account?">
+            android:text="Didn't have an account?">
 
         </TextView>
 
@@ -151,6 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Sign Up"
+            android:fontFamily="@font/manrope_extra_bold"
             android:textSize="17sp"
             android:textColor="#5b4bbd"></TextView>
 
