@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
     app:startDestination="@id/loginFrag">
 
     <fragment
         android:id="@+id/loginFrag"
         android:name="com.example.careerguide.login.LoginFrag"
-        android:label="LoginFrag" >
+        android:label="LoginFrag"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFrag_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -15,5 +17,6 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.careerguide.login.SignUpFragment"
-        android:label="SignUpFragment" />
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up"/>
 </navigation>

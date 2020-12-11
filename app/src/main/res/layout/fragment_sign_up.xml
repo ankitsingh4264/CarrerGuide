@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginFragment"
+    tools:context=".login.LoginFrag"
     android:background="@drawable/login">
 
     <TextView
@@ -99,6 +99,7 @@
         android:layout_marginTop="450dp"
         android:text="SIGN UP"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:textSize="20dp">
 
     </Button>
@@ -114,6 +115,7 @@
         android:layout_marginTop="450dp"
         android:text="SEND OTP"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:textSize="20dp">
 
     </Button>
