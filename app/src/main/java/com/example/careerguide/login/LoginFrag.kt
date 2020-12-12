@@ -18,6 +18,9 @@ class LoginFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        button_send_otp.setOnClickListener {
+            view.findNavController().navigate(R.id.homeFragment)
+        }
 
         sign_up.setOnClickListener {
             view.findNavController().navigate(R.id.signUpFragment)
