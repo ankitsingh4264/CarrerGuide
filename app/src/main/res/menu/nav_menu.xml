@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/nav_profile"
+            android:title="Profile"></item>
+        <item android:id="@+id/nav_find_mentor"
+            android:title="Find Mentor"></item>
+        <item android:id="@+id/nav_be_mentor"
+            android:title="Be Mentor"></item>
+        <item android:title="Logout"
+            android:id="@+id/nav_logout"></item>
+
+</menu>
