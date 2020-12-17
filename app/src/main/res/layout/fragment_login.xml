@@ -34,7 +34,9 @@
             android:textColor="@color/white"
             android:layout_marginHorizontal="20dp"
             android:textSize="20dp"
+            android:inputType="number"
             android:textColorHint="@color/white"
+            android:fontFamily="@font/manrope_medium"
             android:background="@color/transparent"
             android:hint="Phone No.">
 
@@ -55,10 +57,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/white"
-            android:focusable="false"
             android:layout_marginHorizontal="20dp"
             android:textColorHint="@color/white"
             android:background="@color/transparent"
+            android:fontFamily="@font/manrope_medium"
             android:textSize="20dp"
             android:hint="OTP">
 
@@ -76,6 +78,7 @@
         android:layout_marginTop="450dp"
         android:text="LOGIN"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:textSize="20dp">
 
     </Button>
@@ -90,7 +93,6 @@
         android:layout_marginTop="450dp"
         android:text="send OTP"
         android:textStyle="bold"
-        android:fontFamily="@font/manrope_bold"
         android:textColor="@color/white"
         android:textSize="20dp">
 
@@ -136,14 +138,15 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_below="@+id/ll"
-        android:layout_marginLeft="160dp"
+        android:layout_marginLeft="200dp"
         android:layout_marginTop="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:fontFamily="@font/manrope_medium"
             android:text="Didn't have an account?">
 
         </TextView>
@@ -153,6 +156,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Sign Up"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/manrope_extra_bold"
             android:textSize="17sp"
             android:textColor="#5b4bbd"></TextView>

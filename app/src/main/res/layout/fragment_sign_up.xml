@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/white"
+            android:fontFamily="@font/manrope_medium"
             android:layout_marginHorizontal="20dp"
             android:textSize="20dp"
             android:textColorHint="@color/white"
@@ -58,6 +59,7 @@
             android:layout_marginHorizontal="20dp"
             android:textSize="20dp"
             android:inputType="number"
+            android:fontFamily="@font/manrope_medium"
             android:textColorHint="@color/white"
             android:background="@color/transparent"
             android:hint="Phone No.">
@@ -79,6 +81,7 @@
             android:layout_height="match_parent"
             android:textColor="@color/white"
             android:layout_marginHorizontal="20dp"
+            android:fontFamily="@font/manrope_medium"
             android:focusable="false"
             android:textColorHint="@color/white"
             android:background="@color/transparent"
