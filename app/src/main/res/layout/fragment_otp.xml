@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.OtpFragment"
+    android:background="@drawable/login_2">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VERIFY OTP"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="#5b4bbd"
+        android:fontFamily="@font/manrope_extra_bold"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="30dp">
+
+    </TextView>
+
+    <RelativeLayout
+        android:id="@+id/rl_otp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/otp_box"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="320dp">
+
+        <EditText
+            android:id="@+id/edit_otp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/purple_900"
+            android:layout_marginHorizontal="20dp"
+            android:textSize="20dp"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textColorHint="@color/purple_900"
+            android:fontFamily="@font/manrope_medium"
+            android:background="@color/transparent"
+            android:hint="OTP">
+
+        </EditText>
+
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/button_verify_otp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="visible"
+        android:background="@drawable/round_corners2"
+        android:layout_marginLeft="220dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Verify OTP"
+        android:layout_below="@+id/rl_otp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="20dp">
+
+    </Button>
+
+
+</RelativeLayout>

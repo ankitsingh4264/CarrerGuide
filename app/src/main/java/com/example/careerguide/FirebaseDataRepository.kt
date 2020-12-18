@@ -30,4 +30,13 @@ class FirebaseDataRepository {
         return  result
     }
 
+    fun  checkUserExist(phone:String):MutableLiveData<Boolean>{
+        val exist:MutableLiveData<Boolean> = MutableLiveData()
+        firestoreDB.collection("users").whereEqualTo("phone",phone).get()
+                .addOnSuccessListener {
+                    exist.value = it.size()>0
+                }
+        return exist
+    }
+
 }
