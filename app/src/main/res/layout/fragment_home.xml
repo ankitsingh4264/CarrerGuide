@@ -7,15 +7,14 @@
     tools:context=".Home.HomeFragment"
     tools:openDrawer="left"
     android:id="@+id/drawerlayout">
-
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/navigation"
-        app:menu="@menu/nav_menu"
-        android:layout_gravity="left"
-        app:headerLayout="@layout/header"
-        ></com.google.android.material.navigation.NavigationView>
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/navigation"-->
+<!--        app:menu="@menu/nav_menu"-->
+<!--        android:layout_gravity="left"-->
+<!--        app:headerLayout="@layout/header"-->
+<!--        ></com.google.android.material.navigation.NavigationView>-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -26,6 +25,11 @@
             ></TextView>
 
     </RelativeLayout>
+<!--    <FrameLayout-->
+<!--        android:id="@+id/hometxt"-->
+<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

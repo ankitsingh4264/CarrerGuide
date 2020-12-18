@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginFragment"
-    android:background="@drawable/login">
+    tools:context=".login.LoginFrag"
+    android:background="@drawable/login_2">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,18 +14,19 @@
         android:textStyle="bold"
         android:fontFamily="@font/manrope_extra_bold"
         android:textColor="#5b4bbd"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="200dp"
         android:layout_marginLeft="30dp">
 
     </TextView>
 
     <RelativeLayout
+        android:id="@+id/rl_phone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/round_corners"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="280dp">
+        android:layout_marginTop="300dp">
 
         <EditText
             android:id="@+id/edit_phone"
@@ -34,51 +35,55 @@
             android:textColor="@color/white"
             android:layout_marginHorizontal="20dp"
             android:textSize="20dp"
+            android:inputType="number"
             android:textColorHint="@color/white"
+            android:fontFamily="@font/manrope_medium"
             android:background="@color/transparent"
             android:hint="Phone No.">
 
         </EditText>
 
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:visibility="visible"
-        android:background="@drawable/round_corners"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="350dp">
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:visibility="visible"-->
+<!--        android:background="@drawable/round_corners"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginHorizontal="30dp"-->
+<!--        android:layout_marginTop="350dp">-->
 
-        <EditText
-            android:id="@+id/edit_otp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/white"
-            android:focusable="false"
-            android:layout_marginHorizontal="20dp"
-            android:textColorHint="@color/white"
-            android:background="@color/transparent"
-            android:textSize="20dp"
-            android:hint="OTP">
+<!--        <EditText-->
+<!--            android:id="@+id/edit_otp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_marginHorizontal="20dp"-->
+<!--            android:textColorHint="@color/white"-->
+<!--            android:background="@color/transparent"-->
+<!--            android:fontFamily="@font/manrope_medium"-->
+<!--            android:textSize="20dp"-->
+<!--            android:hint="OTP">-->
 
-        </EditText>
+<!--        </EditText>-->
 
-    </RelativeLayout>
+<!--    </RelativeLayout>-->
 
-    <Button
-        android:id="@+id/button_login"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/round_corners2"
-        android:layout_marginLeft="220dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="450dp"
-        android:text="LOGIN"
-        android:textStyle="bold"
-        android:textSize="20dp">
+<!--    <Button-->
+<!--        android:id="@+id/button_login"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@drawable/round_corners2"-->
+<!--        android:layout_marginLeft="220dp"-->
+<!--        android:layout_marginRight="30dp"-->
+<!--        android:layout_marginTop="dp"-->
+<!--        android:layout_below="@+id/edit_phone_no"-->
+<!--        android:text="LOGIN"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="20dp">-->
 
-    </Button>
+<!--    </Button>-->
     <Button
         android:id="@+id/button_send_otp"
         android:layout_width="match_parent"
@@ -87,76 +92,79 @@
         android:background="@drawable/round_corners2"
         android:layout_marginLeft="220dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="30dp"
         android:text="send OTP"
+        android:layout_below="@+id/rl_phone"
         android:textStyle="bold"
-        android:fontFamily="@font/manrope_bold"
         android:textColor="@color/white"
         android:textSize="20dp">
 
     </Button>
 
-    <LinearLayout
-        android:id="@+id/ll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_login"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        >
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ll"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/button_login"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        >-->
 
-        <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="1dp"
-            android:background="@color/grey"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="25dp"
-            >
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OR"
-            android:layout_marginTop="12dp"
-            android:textSize="20dp"
-            android:layout_marginHorizontal="10dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="@color/grey"-->
+<!--            android:layout_marginLeft="150dp"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            >-->
+<!--        </LinearLayout>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="OR"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:textSize="20dp"-->
+<!--            android:layout_marginHorizontal="10dp">-->
 
-        </TextView>
-        <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="1dp"
-            android:background="@color/grey"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="25dp"
-            >
-        </LinearLayout>
+<!--        </TextView>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="@color/grey"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            >-->
+<!--        </LinearLayout>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/ll"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="Didn't have an account?">
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_below="@+id/ll"-->
+<!--        android:layout_marginLeft="200dp"-->
+<!--        android:layout_marginTop="10dp">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="15sp"-->
+<!--            android:fontFamily="@font/manrope_medium"-->
+<!--            android:text="Didn't have an account?">-->
 
-        </TextView>
+<!--        </TextView>-->
 
-        <TextView
-            android:id="@+id/sign_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" Sign Up"
-            android:fontFamily="@font/manrope_extra_bold"
-            android:textSize="17sp"
-            android:textColor="#5b4bbd"></TextView>
+<!--        <TextView-->
+<!--            android:id="@+id/sign_up"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text=" Sign Up"-->
+<!--            android:layout_marginLeft="50dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:fontFamily="@font/manrope_extra_bold"-->
+<!--            android:textSize="17sp"-->
+<!--            android:textColor="#5b4bbd"></TextView>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </RelativeLayout>
