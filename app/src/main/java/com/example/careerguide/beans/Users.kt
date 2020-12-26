@@ -8,6 +8,7 @@ data class Users (
         val headline:String?=null,
         val asMentor:Boolean?=null,
         val fieldsMentoring:String?=null,
-        val mentorAbout:String?=null
+        var mentorAbout:String?=null,
+        val id:String?=null
 
 )

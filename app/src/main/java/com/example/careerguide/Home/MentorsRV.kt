@@ -5,15 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerguide.R
 import com.example.careerguide.beans.Users
-import kotlinx.android.synthetic.main.fragment_find_mentor.view.*
-import kotlinx.android.synthetic.main.fragment_sign_up.view.*
+import com.example.careerguide.pendingRequest.prAdapter
 import kotlinx.android.synthetic.main.mentor_item.view.*
-import java.text.FieldPosition
 
 class MentorsRV(val list:ArrayList<Users>,val context:Context,val clickListener: onitemClick) : RecyclerView.Adapter<MentorsRV.ViewHolder>() {
 
@@ -32,7 +28,7 @@ class MentorsRV(val list:ArrayList<Users>,val context:Context,val clickListener:
         return list.size
     }
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(clickListener:onitemClick,curruser:Users,position: Int){
+        fun bind(clickListener: prAdapter.onitemClick, curruser:Users, position: Int){
             Log.i("ankit",curruser.toString())
            itemView.edt_mentor_name.setText(curruser.name)
             itemView.edt_mentor_headline.setText(curruser.fieldsMentoring)
