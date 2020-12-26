@@ -26,15 +26,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        auth = FirebaseAuth.getInstance()
-
-        if (auth != null) {
-            // User is signed in
-            view?.findNavController()!!.navigate(R.id.homeFragment)
-        } else {
-            // User is signed out
-            Log.d(ContentValues.TAG, "onAuthStateChanged:signed_out")
-        }
 
         toggle=  ActionBarDrawerToggle(
                 this,

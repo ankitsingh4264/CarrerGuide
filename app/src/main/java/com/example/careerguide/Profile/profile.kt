@@ -1,5 +1,6 @@
 package com.example.careerguide.Profile
 
+import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -50,6 +51,7 @@ class profile : Fragment() {
         button_upload.setOnClickListener {
             showImportImageDialog()
         }
+
 
     }
 
@@ -164,5 +166,15 @@ class profile : Fragment() {
         }
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            profile_image.setImageURI(imageURI)
+        }
+        else  {
+            Toast.makeText(requireContext(), "asfdaf", Toast.LENGTH_SHORT).show()
+        }
+    }
 
 }
