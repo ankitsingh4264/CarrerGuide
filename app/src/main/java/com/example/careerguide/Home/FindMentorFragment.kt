@@ -1,6 +1,7 @@
 package com.example.careerguide.Home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,7 @@ class FindMentorFragment : Fragment() ,MentorsRV.onitemClick{
         return inflater.inflate(R.layout.fragment_find_mentor, container, false)
     }
     private lateinit var findMentorVIewModel: FindMentorVIewModel
-    lateinit var adapter:MentorsRV
+    lateinit var dapter:MentorsRV
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,29 +56,18 @@ class FindMentorFragment : Fragment() ,MentorsRV.onitemClick{
             findMentorVIewModel.mMentors.observe(requireActivity(),
             Observer {
                 if (it!=null){
-                       adapter=MentorsRV(it,
+                    dapter=MentorsRV(it,
                           requireActivity(),
-                          this )
+                            this
+                           )
                     rvmentors.apply {
-                        adapter=adapter
+                        adapter=dapter
                         layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
                     }
 
                 }
             })
-
-
-
-
-
-
         }
-
-
-
-
-
-
     }
     fun stagehandle(){
     btnserch.visibility=View.GONE
@@ -86,7 +76,7 @@ class FindMentorFragment : Fragment() ,MentorsRV.onitemClick{
    }
 
     override fun onItemClicked(position: Int) {
-
+          Log.i("click",position.toString())
     }
 
 

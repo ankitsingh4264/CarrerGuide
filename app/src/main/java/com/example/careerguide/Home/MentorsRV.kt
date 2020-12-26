@@ -1,6 +1,7 @@
 package com.example.careerguide.Home
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,17 +25,18 @@ class MentorsRV(val list:ArrayList<Users>,val context:Context,val clickListener:
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       holder.bind(clickListener,list.get(position),position)
+       holder.bind(clickListener  ,list.get(position),position)
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(clickListener: onitemClick,curruser:Users,position: Int){
-           itemView.edit_name.setText(curruser.name)
+        fun bind(clickListener:onitemClick,curruser:Users,position: Int){
+            Log.i("ankit",curruser.toString())
+           itemView.edt_mentor_name.setText(curruser.name)
             itemView.edt_mentor_headline.setText(curruser.fieldsMentoring)
-            itemView.btnserch.setOnClickListener {
+            itemView.btnbookappt.setOnClickListener {
                 clickListener.onItemClicked(position)
             }
 
