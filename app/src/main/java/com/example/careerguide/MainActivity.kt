@@ -1,6 +1,7 @@
 package com.example.careerguide
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.drawerlayout
 
@@ -23,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
         toggle=  ActionBarDrawerToggle(
                 this,
                 drawerlayout,
@@ -39,8 +43,8 @@ class MainActivity : AppCompatActivity() {
         navigation.setNavigationItemSelectedListener { item: MenuItem ->
             when(item.itemId){
                 R.id.nav_profile -> {
-                    Log.i("ankit","rajeev")
-                    navController.navigate(R.id.loginFrag)
+                    //Log.i("ankit","rajeev")
+                    navController.navigate(R.id.profile)
                 }
                 R.id.nav_find_mentor->{
                     setinVisibleNav()
