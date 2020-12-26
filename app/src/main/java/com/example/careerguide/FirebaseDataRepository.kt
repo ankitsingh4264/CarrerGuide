@@ -3,16 +3,13 @@ package com.example.careerguide
 import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.careerguide.beans.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.firestore.auth.User
 import java.util.ArrayList
 
 class FirebaseDataRepository {

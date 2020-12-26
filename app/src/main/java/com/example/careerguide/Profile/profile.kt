@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.bumptech.glide.Glide
 import com.example.careerguide.R
 import com.example.careerguide.beans.Users
 import com.example.careerguide.login.LoginFrag.Companion.phone
@@ -67,6 +68,7 @@ class profile : Fragment() {
         ) {
             edit_profile_name.setText(it.name)
             edit_profile_phone.setText(it.phone)
+            edit_profile_headline.setText(it.headline)
             if (it.imagepath != null && it?.imagepath != "") {
                 if (profile_image != null) {
                     Glide.with(requireContext()).load(it?.imagepath)
