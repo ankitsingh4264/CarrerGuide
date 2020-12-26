@@ -5,6 +5,7 @@ import com.example.careerguide.beans.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.ArrayList
 
 class FirebaseDataRepository {
     private val firestoreDB =FirebaseFirestore.getInstance()
@@ -38,5 +39,19 @@ class FirebaseDataRepository {
                 }
         return exist
     }
+
+    fun getCategory():MutableLiveData<ArrayList<String>>{
+        val data:MutableLiveData<ArrayList<String>> = MutableLiveData()
+        firestoreDB.collection("fields").get().addOnSuccessListener {
+            val list=ArrayList<String>()
+            for (document in it){
+                list.add(document.id)
+            }
+            data.value=list
+        }
+        return data
+
+    }
+
 
 }

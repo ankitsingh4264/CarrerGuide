@@ -37,11 +37,14 @@ class MainActivity : AppCompatActivity() {
 //        navigation.setupWithNavController(navController)
 
         navigation.setNavigationItemSelectedListener { item: MenuItem ->
-            Log.i("ankit","rajeev")
             when(item.itemId){
                 R.id.nav_profile -> {
                     Log.i("ankit","rajeev")
                     navController.navigate(R.id.loginFrag)
+                }
+                R.id.nav_find_mentor->{
+                    setinVisibleNav()
+                    navController.navigate(R.id.findMentorFragment)
                 }
             }
             drawerlayout.closeDrawer(GravityCompat.START)
@@ -50,22 +53,14 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.nav_profile -> {
-//
-//                Log.i("ra","dgs")
-//            }
-//
-//        }
-//
-//        return true;
-//
-//
-//    }
+
+
     fun setVisibleNav(){
-//    drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
     drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+    }
+    fun setinVisibleNav(){
+        drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
     }
 
 
