@@ -1,5 +1,6 @@
 package com.example.careerguide.Profile
 
+import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
@@ -9,33 +10,41 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
+import com.bumptech.glide.Glide
 import com.example.careerguide.R
+import com.example.careerguide.beans.Users
+import com.example.careerguide.login.LoginFrag.Companion.phone
+import com.example.careerguide.login.SignUpFragment.Companion.name
+import com.example.careerguide.login.loginViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*
 
-const val CAMERA_REQUEST_CODE = 200
 const val STORAGE_REQUEST_CODE = 400
-const val IMAGE_PICK_GALLERY = 1000
-const val IMAGE_PICK_CAMERA = 100
 
-lateinit var imageURI: Uri
-lateinit var cameraPermission: Array<String>
-lateinit var storagePermission: Array<String>
+var imageURI: Uri? = null
+lateinit var auth : FirebaseAuth
+private lateinit var profilemvvm: profileViewModel
 
 class profile : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -47,165 +56,119 @@ class profile : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        cameraPermission = arrayOf(
-            android.Manifest.permission.CAMERA,
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
-        storagePermission = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+        var use: Users = Users()
+        auth = FirebaseAuth.getInstance()
+
+        profilemvvm = ViewModelProvider(requireActivity()).get(profileViewModel::class.java)
+
+        profilemvvm.usersDetails()
+        profilemvvm.mUserDetail.observe(
+            requireActivity()
+        ) {
+            edit_profile_name.setText(it.name)
+            edit_profile_phone.setText(it.phone)
+            edit_profile_headline.setText(it.headline)
+            if (it.imagepath != null && it?.imagepath != "") {
+                if (profile_image != null) {
+                    Glide.with(requireContext()).load(it?.imagepath)
+                        .into(profile_image!!)
+                }
+            }
+        }
+//        profilemvvm.usersDetails()
+//        profilemvvm.mUserDetail.observe(requireActivity(),
+//            {
+//                edit_profile_name.text=it.name
+//            }
+//        )
 
         button_upload.setOnClickListener {
             showImportImageDialog()
         }
 
+        button_save_changes.setOnClickListener {
+            use = Users(
+                name = edit_profile_name.text.toString(),
+                phone = edit_profile_phone.text.toString(),
+                headline = edit_profile_headline.text.toString()
+            )
 
+            profilemvvm.insertUser(use)
+
+            if (imageURI!=null) {
+                profilemvvm.uploadprofileToFirebase(imageURI,"imagepath")
+            }
+                Toast.makeText(
+                requireActivity(),
+                "Upload Successful",
+                Toast.LENGTH_SHORT
+            ).show()
+
+
+        }
     }
 
     private fun showImportImageDialog() {
-        val items = arrayOf("Camera", "Gallery")
-        val dialog = MaterialAlertDialogBuilder(requireContext())
-        dialog.setTitle("Select Image")
-        dialog.setItems(items) { p0, p1 ->
-            if (p1 == 0) {
-                if (!checkCameraPermission()) {
-                    requestCameraPermission()
-                } else {
-                    pickCamera()
-                }
-            } else {
-                if (!checkStoragePermission()) {
-                    requestStoragePermission()
-                } else {
-                    pickGallery()
-                }
-            }
-        }
-        dialog.create().show()
-    }
+        if (takepermissions()){
 
-    private fun checkCameraPermission(): Boolean {
-        val result1 = ContextCompat.checkSelfPermission(
-            requireContext(),
-            android.Manifest.permission.CAMERA
-        ) == PackageManager.PERMISSION_GRANTED
-        val result2 = ContextCompat.checkSelfPermission(
-            requireContext(),
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-        val result3 = ContextCompat.checkSelfPermission(
-            requireContext(),
-            android.Manifest.permission.CAMERA
-        ) == PackageManager.PERMISSION_GRANTED
-
-        return result1 and result2
-    }
-
-    private fun requestCameraPermission() {
-        requestPermissions(cameraPermission, CAMERA_REQUEST_CODE)
-    }
-
-    private fun pickCamera() {
-        val contentValues = ContentValues()
-        contentValues.put(MediaStore.Images.Media.TITLE, "NewImage")
-        contentValues.put(MediaStore.Images.Media.DESCRIPTION, "Image To Text")
-        imageURI = context?.contentResolver?.insert(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            contentValues
-        )!!
-
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageURI)
-        startActivityForResult(cameraIntent, IMAGE_PICK_CAMERA)
-    }
-
-    private fun checkStoragePermission(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            requireContext(),
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    private fun requestStoragePermission() {
-        requestPermissions(
-            storagePermission,
-            STORAGE_REQUEST_CODE
-        )
-    }
-
-    private fun pickGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_GALLERY)
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            CAMERA_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty()) {
-                    val cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    val writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
-
-                    if (cameraAccepted and writeStorageAccepted) {
-                        pickCamera()
-                    } else {
-                        Toast.makeText(requireContext(), "permission denied", Toast.LENGTH_SHORT).show()
-
-                    }
-                }
-            }
-            STORAGE_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty()) {
-                    val writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
-
-                    if (writeStorageAccepted) {
-                        pickGallery()
-                    } else {
-                        Toast.makeText(requireContext(), "permission denied", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+            choosePhotofromGallery(STORAGE_REQUEST_CODE)
         }
     }
+
+    private  fun takepermissions():Boolean{
+
+        var check=false;
+        Dexter.withContext(requireActivity()).withPermissions(
+            Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA
+        ).withListener(object : MultiplePermissionsListener {
+            override fun onPermissionsChecked(multiplePermissionsReport: MultiplePermissionsReport?) {
+                if (multiplePermissionsReport!!.areAllPermissionsGranted()) {
+                    check = true;
+                } else {
+                    Toast.makeText(
+                        requireActivity(),
+                        "Please provide permission to access this function",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+            }
+
+            override fun onPermissionRationaleShouldBeShown(
+                p0: MutableList<PermissionRequest>?,
+                permissionToken: PermissionToken?
+            ) {
+                permissionToken!!.continuePermissionRequest()
+            }
+
+        }
+        ).onSameThread().check()
+
+        if (check) return true;
+        return false;
+    }
+
+    private fun choosePhotofromGallery(requestCode: Int){
+        val galleryintent=Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(galleryintent, STORAGE_REQUEST_CODE)
+    }
+
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == CAMERA_REQUEST_CODE && data!=null){
-                imageURI= data.data!!
-
-            }
+            Log.i("rajeev", "dasd")
             if (requestCode == STORAGE_REQUEST_CODE && data!=null){
-
-                val imgbitmap=data.extras!!.get("data") as Bitmap
-                imageURI=storeImage(imgbitmap)
-
+                imageURI= data.data!!
+                profile_image.setImageURI(imageURI)
             }
         }
-    }
-
-
-    private fun storeImage(image: Bitmap) : Uri {
-        val root = Environment.getExternalStorageDirectory().absolutePath
-        val myDir = File("$root/saved_images")
-        myDir.mkdirs()
-
-        val fname = UUID.randomUUID().toString()
-        val file = File(myDir, fname)
-        if (file.exists()) file.delete()
-        try {
-            val out = FileOutputStream(file)
-            image.compress(Bitmap.CompressFormat.JPEG, 90, out)
-            out.flush()
-            out.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return Uri.fromFile(file)
 
     }
+
+
 }

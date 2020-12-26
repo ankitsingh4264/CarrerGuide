@@ -1,5 +1,7 @@
 package com.example.careerguide
 
+import android.content.ContentValues.TAG
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.careerguide.beans.Users
@@ -7,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
+import com.google.firebase.storage.FirebaseStorage
 import java.util.ArrayList
 
 class FirebaseDataRepository {
@@ -74,6 +76,57 @@ class FirebaseDataRepository {
         return data
     }
 
+    fun getUserDetails(): MutableLiveData<Users> {
+        val userId = auth.currentUser!!.uid
+        val userDetailsLiveDate = MutableLiveData<Users>()
+
+        val docRef = firestoreDB.collection("users").document(userId)
+        docRef.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null && snapshot.exists()) {
+                Log.d(TAG, "Current data: ${snapshot.data}")
+                userDetailsLiveDate.value=snapshot.toObject(Users::class.java)
+            }
+        }
+
+        return userDetailsLiveDate
+    }
+
+    fun userUpload(user: Users) : MutableLiveData<Boolean> {
+        val id = auth.currentUser!!.uid
+        var pos:MutableLiveData<Boolean> = MutableLiveData()
+
+        firestoreDB.collection("users").document(id).set(user).addOnSuccessListener {
+            pos.value=true
+        }.addOnFailureListener{
+            pos.value=false
+        }
+        return pos
+    }
+
+    fun uploadProfileToFirebase(imageURI: Uri?, path: String) {
+        val userId = auth.currentUser!!.uid
+
+        val storageReference =
+                FirebaseStorage.getInstance().getReference("/UserProfilePicture/$userId/$path")
+
+
+        storageReference.putFile(imageURI!!).addOnSuccessListener {
+            storageReference.downloadUrl.addOnSuccessListener {
+
+                firestoreDB.collection("users").document(userId)
+                        .update(
+                                mapOf(
+                                        path to it.toString()
+                                        )
+                        )
+            }
+        }
+    }
 
     fun getuserpr(): MutableLiveData<ArrayList<Users>> {
         val id=auth.currentUser!!.uid
