@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_margin="20dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/img_profile_mentor"
+        ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_mentor_name"
+        android:layout_toRightOf="@+id/img_profile_mentor"
+        android:layout_marginTop="20dp"
+        android:text="mentor name"
+        android:textSize="18sp"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_mentor_headline"
+        android:layout_toRightOf="@+id/img_profile_mentor"
+        android:layout_below="@+id/edt_mentor_name"
+        android:layout_marginTop="10dp"
+        android:text="mentor headline"
+        android:maxLines="2"
+        android:textSize="18sp"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_mentor_fields"
+        android:layout_below="@+id/img_profile_mentor"
+        android:layout_marginLeft="20dp"
+        android:text="mentor Fields"
+        android:maxLines="1"
+        android:textSize="18sp"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_mentor_about"
+        android:layout_below="@+id/edt_mentor_fields"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="hey! i am 3rd year undergrad at IIT delhi and red coder at codeforces"
+        android:maxLines="1"
+        android:textSize="18sp"
+        ></TextView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book Appointment"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/edt_mentor_about"
+        ></Button>
+
+
+
+
+</RelativeLayout>

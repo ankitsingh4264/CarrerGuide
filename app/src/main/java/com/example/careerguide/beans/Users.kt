@@ -5,6 +5,8 @@ data class Users (
         val phone : String? = null,
         val verified: Boolean =false,
         val imagepath:String? = null,
-        val headline:String?=null
+        val headline:String?=null,
+        val asMentor:Boolean?=null,
+        val fieldsMentoring:String?=null
 
 )
