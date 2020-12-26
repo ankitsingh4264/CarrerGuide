@@ -52,7 +52,9 @@ class LoginFrag : Fragment() {
 
 //        (activity as MainActivity).setVisibleNav()
         button_send_otp.setOnClickListener {
+
             hideKeyboard(requireActivity())
+
             phone=edit_phone.text.toString().trim()
             if(phone!!.length!=10)
             {

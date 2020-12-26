@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_homeFragment_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_homeFragment_to_beMentor"
+            app:destination="@id/beMentor" />
     </fragment>
     <fragment
         android:id="@+id/loginOrSignUp"
@@ -69,4 +72,9 @@
         android:name="com.example.careerguide.Profile.profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/beMentor"
+        android:name="com.example.careerguide.Home.beMentor"
+        android:label="fragment_be_mentor"
+        tools:layout="@layout/fragment_be_mentor" />
 </navigation>
