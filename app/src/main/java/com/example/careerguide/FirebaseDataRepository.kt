@@ -75,4 +75,39 @@ class FirebaseDataRepository {
     }
 
 
+    fun getuserpr(): MutableLiveData<ArrayList<Users>> {
+        val id=auth.currentUser!!.uid
+        val data:MutableLiveData<ArrayList<Users>> = MutableLiveData()
+
+        firestoreDB.collection("users").document(id).collection("pendingRequests").whereEqualTo("accepted",-1).get()
+            .addOnSuccessListener {
+                val temp:ArrayList<Users> = ArrayList()
+                val sz=it.size();
+                for (doc in it){
+                    val uid=doc.id
+                    firestoreDB.collection("users").document(uid).get().addOnSuccessListener {
+                        it.toObject(Users::class.java)?.let { it1 -> temp.add(it1) }
+                        if (temp.size==sz) data.value=temp
+                    }
+                }
+            }
+        return data
+    }
+    fun updateuserpr(userid:String,accepted:Int){
+        val id=auth.currentUser!!.uid
+        if (accepted==1)
+        firestoreDB.collection("users").document(userid).collection("acceptedRequests").document(id).set(
+            mapOf(
+                "accepted" to 1
+            ))
+
+        firestoreDB.collection("users").document(id).collection("pendingRequests").document("userid")
+            .update("accepted",accepted).addOnSuccessListener {
+
+          }
+
+
+    }
+
+
 }
