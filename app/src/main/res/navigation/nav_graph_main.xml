@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homeFragment_to_findMentorFragment"
             app:destination="@id/findMentorFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profile"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/loginOrSignUp"
@@ -61,4 +64,9 @@
         android:name="com.example.careerguide.Home.FindMentorFragment"
         android:label="fragment_find_mentor"
         tools:layout="@layout/fragment_find_mentor" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.careerguide.Profile.profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
