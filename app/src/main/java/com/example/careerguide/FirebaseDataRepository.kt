@@ -3,13 +3,16 @@ package com.example.careerguide
 import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.careerguide.beans.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.firestore.auth.User
 import java.util.ArrayList
 
 class FirebaseDataRepository {
@@ -56,6 +59,24 @@ class FirebaseDataRepository {
         }
         return data
 
+    }
+    fun getMentor(field:String):MutableLiveData<ArrayList<Users>>{
+        val data:MutableLiveData<ArrayList<Users>> = MutableLiveData()
+        val temp:ArrayList<Users> = ArrayList()
+        firestoreDB.collection("users").get().addOnSuccessListener {
+                  for (doc in it){
+                      val curr=(doc as DocumentSnapshot).toObject(Users::class.java)
+                       if (curr!!.fieldsMentoring==null) continue
+                      if(curr.fieldsMentoring!!.contains(field)){
+                          temp.add(curr)
+                      }
+                  }
+            Log.i("ankit","${temp}")
+            data.value=temp
+        }.addOnFailureListener {
+           data.value=null
+        }
+        return data
     }
 
     fun getUserDetails(): MutableLiveData<Users> {

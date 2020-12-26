@@ -24,25 +24,23 @@
         android:layout_marginHorizontal="20dp"
         ></AutoCompleteTextView>
 
-    <AutoCompleteTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter the Subcategory"
-        android:id="@+id/edtsubcategory"
-        android:layout_below="@+id/edtcategory"
-        android:layout_marginTop="24dp"
-        android:layout_marginHorizontal="20dp"
-        ></AutoCompleteTextView>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnserch"
-        android:layout_below="@+id/edtsubcategory"
+        android:layout_below="@+id/edtcategory"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:text="SEARCH MENTORS"
         ></Button>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rvmentors"
+        android:visibility="gone"
+        ></androidx.recyclerview.widget.RecyclerView>
 
 
 
