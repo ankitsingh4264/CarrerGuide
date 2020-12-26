@@ -4,8 +4,10 @@ import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +18,9 @@ import androidx.core.content.ContextCompat
 import com.example.careerguide.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_profile.*
+import java.io.File
+import java.io.FileOutputStream
+import java.util.*
 
 const val CAMERA_REQUEST_CODE = 200
 const val STORAGE_REQUEST_CODE = 400
@@ -170,11 +175,37 @@ class profile : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            profile_image.setImageURI(imageURI)
-        }
-        else  {
-            Toast.makeText(requireContext(), "asfdaf", Toast.LENGTH_SHORT).show()
+            if (requestCode == CAMERA_REQUEST_CODE && data!=null){
+                imageURI= data.data!!
+
+            }
+            if (requestCode == STORAGE_REQUEST_CODE && data!=null){
+
+                val imgbitmap=data.extras!!.get("data") as Bitmap
+                imageURI=storeImage(imgbitmap)
+
+            }
         }
     }
 
+
+    private fun storeImage(image: Bitmap) : Uri {
+        val root = Environment.getExternalStorageDirectory().absolutePath
+        val myDir = File("$root/saved_images")
+        myDir.mkdirs()
+
+        val fname = UUID.randomUUID().toString()
+        val file = File(myDir, fname)
+        if (file.exists()) file.delete()
+        try {
+            val out = FileOutputStream(file)
+            image.compress(Bitmap.CompressFormat.JPEG, 90, out)
+            out.flush()
+            out.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return Uri.fromFile(file)
+
+    }
 }
