@@ -7,6 +7,7 @@ data class Users (
         val imagepath:String? = null,
         val headline:String?=null,
         val asMentor:Boolean?=null,
-        val fieldsMentoring:String?=null
+        val fieldsMentoring:String?=null,
+        var mentorAbout:String?=null
 
 )

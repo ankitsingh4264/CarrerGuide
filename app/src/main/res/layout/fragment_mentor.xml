@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    tools:context=".Home.MentorFragment">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_margin="20dp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/img_profile_mentor"
         ></de.hdodenhof.circleimageview.CircleImageView>
     <TextView
@@ -32,7 +33,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/edt_mentor_fields"
+        android:id="@+id/edt_mentor_field"
         android:layout_below="@+id/img_profile_mentor"
         android:layout_marginLeft="20dp"
         android:text="mentor Fields"
@@ -43,11 +44,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/edt_mentor_about"
-        android:layout_below="@+id/edt_mentor_fields"
+        android:layout_below="@+id/edt_mentor_field"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:text="hey! i am 3rd year undergrad at IIT delhi and red coder at codeforces"
-        android:maxLines="1"
+
         android:textSize="18sp"
         ></TextView>
 
@@ -55,14 +56,24 @@
         android:id="@+id/btnbookappt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book Appointment"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
+        android:text="Send Appointment Request"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:layout_below="@id/edt_mentor_about"
         ></Button>
 
-
-
+    <Button
+        android:id="@+id/btncancelapt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cancel"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/btnbookappt"
+        ></Button>
 
 </RelativeLayout>
