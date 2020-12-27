@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_profile.edit_profile_headline
 
 
 lateinit var auth : FirebaseAuth
-private lateinit var profilemvvm: profileViewModel
 
 class beMentor : Fragment() {
 

@@ -35,7 +35,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+//
+//        var mUserDetail: MutableLiveData<Users> = MutableLiveData()
+//        mUserDetail=FirebaseDataRepository().getUserDetails()
+//        mUserDetail.observe(
+//            this
+//        ) {
+//            //text_nav_name.setText(it.name)
+//            text_nav_phone.setText(it.phone)
+//        }
 
 
         toggle=  ActionBarDrawerToggle(
@@ -49,7 +57,6 @@ class MainActivity : AppCompatActivity() {
         drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         toggle.syncState()
         val navController = findNavController(R.id.nav_main_fragment)
-//        navigation.setupWithNavController(navController)
 
 
 
@@ -62,11 +69,11 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.profile)
                 }
                 R.id.nav_find_mentor->{
-                    setinVisibleNav()
+//                    setinVisibleNav()
                     navController.navigate(R.id.findMentorFragment)
                 }
                 R.id.nav_be_mentor->{
-                    setinVisibleNav()
+//                    setinVisibleNav()
                     navController.navigate(R.id.beMentor)
                 }
             }

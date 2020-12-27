@@ -155,5 +155,24 @@ class FirebaseDataRepository {
 
     }
 
+    fun getuserar(): MutableLiveData<ArrayList<Users>> {
+        val id=auth.currentUser!!.uid
+        val data:MutableLiveData<ArrayList<Users>> = MutableLiveData()
+
+        firestoreDB.collection("users").document(id).collection("acceptedRequests").whereEqualTo("accepted",-1).get()
+            .addOnSuccessListener {
+                val temp:ArrayList<Users> = ArrayList()
+                val sz=it.size();
+                for (doc in it){
+                    val uid=doc.id
+                    firestoreDB.collection("users").document(uid).get().addOnSuccessListener {
+                        it.toObject(Users::class.java)?.let { it1 -> temp.add(it1) }
+                        if (temp.size==sz) data.value=temp
+                    }
+                }
+            }
+        return data
+    }
+
 
 }

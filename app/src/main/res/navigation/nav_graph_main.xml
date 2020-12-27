@@ -32,11 +32,14 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_findMentorFragment"
-            app:destination="@id/findMentorFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_homeFragment_to_profile2"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_homeFragment_to_findMentorFragment"
+            app:destination="@id/findMentorFragment" />
         <action
             android:id="@+id/action_homeFragment_to_beMentor"
             app:destination="@id/beMentor" />
