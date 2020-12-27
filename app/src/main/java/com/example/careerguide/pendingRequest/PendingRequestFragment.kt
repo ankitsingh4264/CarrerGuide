@@ -37,7 +37,7 @@ class PendingRequestFragment : Fragment() ,prAdapter.onitemClick{
             exmentlist=it
             if (it!=null){
                 Log.i("ankit",it.toString()+" in it")
-                if (requireActivity()!= null) {
+                if (activity!= null) {
                     dapter = prAdapter(it,
                             requireActivity(),
                             this)

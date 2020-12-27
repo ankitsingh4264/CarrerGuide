@@ -32,7 +32,10 @@ class MentorsRV(val list:ArrayList<Users>,val context:Context,val clickListener:
         fun bind(clickListener: onitemClick, curruser:Users, position: Int,context: Context){
             Log.i("ankit",curruser.toString())
            itemView.edt_mentor_name.setText(curruser.name)
-            itemView.edt_mentor_headline.setText(curruser.fieldsMentoring)
+            itemView.edt_mentor_headline.setText(curruser.headline)
+            itemView.edt_mentor_about.setText(curruser.mentorAbout)
+            itemView.edt_mentor_fields.setText(curruser.fieldsMentoring)
+
             if(curruser.imagepath!=null)
             {
                     Glide.with(context).load(curruser.imagepath)
