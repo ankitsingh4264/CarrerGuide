@@ -61,6 +61,9 @@ class profile : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         var uris:String?=null
+        var ab:String?=null
+        var f:String?=null
+        var i:String?=null
         profilemvvm = ViewModelProvider(requireActivity()).get(profileViewModel::class.java)
 
         profilemvvm.usersDetails()
@@ -70,6 +73,9 @@ class profile : Fragment() {
             edit_profile_name.setText(it.name)
             edit_profile_phone.setText(it.phone)
             edit_profile_headline.setText(it.headline)
+            f=it.fieldsMentoring
+            ab=it.mentorAbout
+            i=it.id
             if (it.imagepath != null && it?.imagepath != "") {
                 uris=it.imagepath
                 if (profile_image != null) {
@@ -88,8 +94,10 @@ class profile : Fragment() {
                 name = edit_profile_name.text.toString(),
                 phone = edit_profile_phone.text.toString(),
                 headline = edit_profile_headline.text.toString(),
-                imagepath = uris
-
+                imagepath = uris,
+                fieldsMentoring = f,
+                mentorAbout = ab,
+                id = i
             )
 
             profilemvvm.insertUser(use)

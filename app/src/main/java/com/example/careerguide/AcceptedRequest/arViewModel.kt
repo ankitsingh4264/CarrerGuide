@@ -15,7 +15,7 @@ class arViewModel:ViewModel() {
         mUserDetail=FirebaseDatabase.getUserDetails()
     }
     fun getusersar(){
-        marusers=FirebaseDatabase.getuserpr()
+        marusers=FirebaseDatabase.getuserar()
 
     }
     fun updatepr(id:String,accepted:Int){
