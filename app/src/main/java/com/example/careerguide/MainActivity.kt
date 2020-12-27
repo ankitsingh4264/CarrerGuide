@@ -91,6 +91,14 @@ class MainActivity : AppCompatActivity() {
                     setinVisibleNav()
                     navController.navigate(R.id.pendingRequestFragment)
                 }
+                R.id.nav_be_mentor->{
+                    setinVisibleNav()
+                    navController.navigate(R.id.beMentor)
+                }
+                R.id.nav_ar->{
+                    setinVisibleNav()
+                    navController.navigate(R.id.acceptedRequest)
+                }
             }
             drawerlayout.closeDrawer(GravityCompat.START)
             navigation.setCheckedItem(item.itemId)
@@ -107,6 +115,7 @@ class MainActivity : AppCompatActivity() {
         drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
     }
+
 
 
 }

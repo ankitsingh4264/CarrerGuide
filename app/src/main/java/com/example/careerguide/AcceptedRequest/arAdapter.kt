@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.careerguide.R
 import com.example.careerguide.beans.Users
 import kotlinx.android.synthetic.main.ar_item.view.*
-import kotlinx.android.synthetic.main.pr_item.view.pr_edt_headline
-import kotlinx.android.synthetic.main.pr_item.view.pr_edt_name
+import kotlinx.android.synthetic.main.pr_item.view.*
 
 class arAdapter(val list:ArrayList<Users>, val context: Context, val clickListener: acceptedRequest) : RecyclerView.Adapter<arAdapter.ViewHolder>() {
 
@@ -19,7 +19,7 @@ class arAdapter(val list:ArrayList<Users>, val context: Context, val clickListen
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(clickListener, list.get(position), position)
+        holder.bind(clickListener, list.get(position), position,context)
 
     }
 
@@ -29,9 +29,14 @@ class arAdapter(val list:ArrayList<Users>, val context: Context, val clickListen
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(clickListener: acceptedRequest, curruser: Users, position: Int) {
-            itemView.pr_edt_name.setText(curruser.name)
-            itemView.pr_edt_headline.setText(curruser.fieldsMentoring)
+        fun bind(clickListener: acceptedRequest, curruser: Users, position: Int,context: Context) {
+            itemView.ar_edt_name.setText(curruser.name)
+            itemView.ar_edt_headline.setText(curruser.fieldsMentoring)
+            if(curruser.imagepath!=null)
+            {
+                Glide.with(context).load(curruser.imagepath)
+                        .into(itemView.ar_profile_img)
+            }
             itemView.button_call.setOnClickListener {
                 clickListener.onItemClicked(true)
             }

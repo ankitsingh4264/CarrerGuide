@@ -10,6 +10,8 @@
             android:id="@+id/nav_logout"></item>
         <item android:title="Pending Requests"
             android:id="@+id/nav_pr"></item>
+        <item android:title="Accepted Requests"
+            android:id="@+id/nav_ar"></item>
 
 
 </menu>
