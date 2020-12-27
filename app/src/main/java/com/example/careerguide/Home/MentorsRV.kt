@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.careerguide.R
 import com.example.careerguide.beans.Users
-import com.example.careerguide.pendingRequest.prAdapter
 import kotlinx.android.synthetic.main.mentor_item.view.*
+import kotlinx.android.synthetic.main.pr_item.view.*
 
 class MentorsRV(val list:ArrayList<Users>,val context:Context,val clickListener: onitemClick) : RecyclerView.Adapter<MentorsRV.ViewHolder>() {
 
@@ -28,13 +28,14 @@ class MentorsRV(val list:ArrayList<Users>,val context:Context,val clickListener:
         return list.size
     }
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(clickListener: prAdapter.onitemClick, curruser:Users, position: Int){
+        fun bind(clickListener: onitemClick, curruser:Users, position: Int){
             Log.i("ankit",curruser.toString())
            itemView.edt_mentor_name.setText(curruser.name)
             itemView.edt_mentor_headline.setText(curruser.fieldsMentoring)
             itemView.btnbookappt.setOnClickListener {
                 clickListener.onItemClicked(position)
             }
+
 
         }
 

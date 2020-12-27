@@ -22,8 +22,10 @@ class FirebaseDataRepository {
         auth.signInWithCredential(credential)
             .addOnCompleteListener { it->
                 if (it.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
+                    // Sign in success, update UI with t
+                    //he signed-in user's information
                     userid=it.result!!.user!!.uid
+                   users.id=userid
                     firestoreDB.collection("users").document(userid!!).set(users).addOnSuccessListener {
                         result.value=true;
                     }.addOnFailureListener{
@@ -122,7 +124,7 @@ class FirebaseDataRepository {
                         .update(
                                 mapOf(
                                         path to it.toString()
-                                        )
+                                )
                         )
             }
         }
@@ -131,6 +133,7 @@ class FirebaseDataRepository {
     fun getuserpr(): MutableLiveData<ArrayList<Users>> {
         val id=auth.currentUser!!.uid
         val data:MutableLiveData<ArrayList<Users>> = MutableLiveData()
+
 
         firestoreDB.collection("users").document(id).collection("pendingRequests").whereEqualTo("accepted",-1).get()
             .addOnSuccessListener {

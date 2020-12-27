@@ -50,6 +50,10 @@ class MainActivity : AppCompatActivity() {
                     setinVisibleNav()
                     navController.navigate(R.id.findMentorFragment)
                 }
+                R.id.nav_pr->{
+                    setinVisibleNav()
+                    navController.navigate(R.id.pendingRequestFragment)
+                }
             }
             drawerlayout.closeDrawer(GravityCompat.START)
             navigation.setCheckedItem(item.itemId)

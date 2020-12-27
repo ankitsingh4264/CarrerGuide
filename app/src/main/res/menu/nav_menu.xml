@@ -8,5 +8,8 @@
             android:title="Be Mentor"></item>
         <item android:title="Logout"
             android:id="@+id/nav_logout"></item>
+        <item android:title="Pending Requests"
+            android:id="@+id/nav_pr"></item>
+
 
 </menu>
