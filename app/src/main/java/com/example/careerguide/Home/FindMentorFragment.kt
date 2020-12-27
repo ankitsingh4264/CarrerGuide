@@ -112,6 +112,11 @@ class FindMentorFragment : Fragment() ,MentorsRV.onitemClick{
         mDialogView.btncancelapt.setOnClickListener {
             mAlertDialog.dismiss()
         }
+        mDialogView.btnconfirmapt.setOnClickListener {
+            findMentorVIewModel.createpr(curr.id!!)
+            Toast.makeText(requireActivity(),"request sent", Toast.LENGTH_SHORT).show()
+        }
+
 
     }
 
