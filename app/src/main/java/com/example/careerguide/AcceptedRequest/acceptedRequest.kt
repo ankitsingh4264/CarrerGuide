@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_accepted_request.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
-class acceptedRequest : Fragment() {
+class acceptedRequest : Fragment(),arAdapter.onitemClick {
 
     private lateinit var armvvm: arViewModel
     lateinit var dapter: arAdapter
@@ -54,21 +54,12 @@ class acceptedRequest : Fragment() {
 
     }
 
-    fun onItemClicked(accepted: Boolean) {
-        var tel:String?=null
-        armvvm.usersDetails()
-        armvvm.mUserDetail.observe(
-            requireActivity()
-        ) {
-            tel=it.phone
-        }
-        if(accepted)
-        {
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:"+tel)
-            startActivity(intent)
-        }
 
+
+    override fun onItemClicked(phone: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$phone")
+        startActivity(intent)
     }
 
 }

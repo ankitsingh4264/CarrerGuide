@@ -6,7 +6,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 tools:context=".MainActivity"
-tools:openDrawer="left"
+tools:openDrawer="start"
 android:id="@+id/drawerlayout">
 
 
@@ -23,7 +23,8 @@ android:id="@+id/drawerlayout">
         android:layout_height="match_parent"
         android:id="@+id/navigation"
         app:menu="@menu/nav_menu"
-        android:layout_gravity="left"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="start"
         android:visibility="gone"
 
         app:headerLayout="@layout/header"

@@ -44,20 +44,20 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel= ViewModelProvider(this).get(MainViewModel::class.java)
 
-         mainViewModel.getcurruser()
+        mainViewModel.getcurruser()
         mainViewModel.musers.observe(this,
-        Observer {
-            val navview=navigation.getHeaderView(0)
-            navview.text_nav_name.setText(it.name)
-            navview.text_nav_phone.setText(it.phone)
+                Observer {
+                    val navview=navigation.getHeaderView(0)
+                    navview.text_nav_name.setText(it.name)
+                    navview.text_nav_phone.setText(it.phone)
 
-            if (it.imagepath != null && it?.imagepath != "") {
+                    if (it.imagepath != null && it?.imagepath != "") {
 
-                    Glide.with(this).load(it?.imagepath)
-                            .into(navview.img_profile)
+                        Glide.with(this).load(it?.imagepath)
+                                .into(navview.img_profile)
 
-            }
-        })
+                    }
+                })
 
 
 
@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun setVisibleNav(){
-    drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
     fun setinVisibleNav(){
         drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
