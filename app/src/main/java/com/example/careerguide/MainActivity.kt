@@ -119,6 +119,9 @@ class MainActivity : AppCompatActivity() {
         drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
     }
+    fun opendrawer(){
+        drawerlayout.openDrawer(GravityCompat.START)
+    }
 
 
 

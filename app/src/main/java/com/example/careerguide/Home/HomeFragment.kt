@@ -33,11 +33,11 @@ class HomeFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).setVisibleNav()
 
-//        mDrawer = drawerlayout
-//
-//        button_nav_open.setOnClickListener {
-//            mDrawer.openDrawer(GravityCompat.START)
-//        }
+
+
+        button_nav_open.setOnClickListener {
+            (activity as MainActivity).opendrawer()
+        }
     }
 
 
