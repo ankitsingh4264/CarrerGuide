@@ -198,7 +198,7 @@ class FirebaseDataRepository {
         val id=auth.currentUser!!.uid
         val data:MutableLiveData<ArrayList<Users>> = MutableLiveData()
 
-        firestoreDB.collection("users").document(id).collection("acceptedRequests").whereEqualTo("accepted",-1).get()
+        firestoreDB.collection("users").document(id).collection("acceptedRequests").get()
             .addOnSuccessListener {
                 val temp:ArrayList<Users> = ArrayList()
                 val sz=it.size();

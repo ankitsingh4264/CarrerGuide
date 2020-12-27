@@ -44,8 +44,7 @@ class beMentor : Fragment() {
         var uriimg:String?=null
         var field:String?=null
         var about:String?=null
-
-
+        var i:String?=null
 
 
         com.example.careerguide.Profile.auth = FirebaseAuth.getInstance()
@@ -56,6 +55,7 @@ class beMentor : Fragment() {
         com.example.careerguide.Profile.profilemvvm.mUserDetail.observe(
             requireActivity()
         ) {
+            field=it.fieldsMentoring
             if(it.fieldsMentoring!=null)
             {
 
@@ -95,24 +95,45 @@ class beMentor : Fragment() {
             head=it.headline
             pho=it.phone
             uriimg=it.imagepath
+            i=it.id
         }
 
-        button_save_field.setOnClickListener {
-            use = Users(
-                name = n,
-                phone = pho,
-                headline = head,
-                imagepath = uriimg,
-                fieldsMentoring = edit_field1.text.toString()+","+edit_field2.text.toString()+","+edit_field3.text.toString(),
-                mentorAbout = edit_about.text.toString()
-            )
 
-            com.example.careerguide.Profile.profilemvvm.insertUser(use)
-            Toast.makeText(
-                requireActivity(),
-                "Upload Successful",
-                Toast.LENGTH_SHORT
-            ).show()
+        button_save_field.setOnClickListener {
+            if (edit_field1==null && edit_field1.text.length==0)
+            {
+                edit_field1.error="This should not be empty"
+            }
+            else {
+                if(edit_field1!=null)
+                {
+                    field=edit_field1.text.toString()
+                }
+                if(edit_field2!=null)
+                {
+                    field+=","+edit_field2.text.toString()
+                }
+                if(edit_field3!=null)
+                {
+                    field+=","+edit_field3.text.toString()
+                }
+                use = Users(
+                        name = n,
+                        phone = pho,
+                        headline = head,
+                        imagepath = uriimg,
+                        fieldsMentoring = field,
+                        mentorAbout = edit_about.text.toString(),
+                        id = i
+                )
+
+                com.example.careerguide.Profile.profilemvvm.insertUser(use)
+                Toast.makeText(
+                        requireActivity(),
+                        "Upload Successful",
+                        Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 }
