@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/pending_back"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -43,6 +43,7 @@
         android:src="@drawable/cross"
         android:layout_below="@id/pr_edt_headline"
         android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
 
         ></de.hdodenhof.circleimageview.CircleImageView>
     <de.hdodenhof.circleimageview.CircleImageView
