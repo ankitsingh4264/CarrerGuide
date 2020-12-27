@@ -46,7 +46,13 @@
         <action
             android:id="@+id/action_homeFragment_to_pendingRequestFragment"
             app:destination="@id/pendingRequestFragment" />
+        <action
             android:id="@+id/action_homeFragment_to_beMentor"
+            app:destination="@id/beMentor" />
+        <action
+            android:id="@+id/action_homeFragment_to_acceptedRequest"
+            app:destination="@id/acceptedRequest" />
+        android:id="@+id/action_homeFragment_to_beMentor"
             app:destination="@id/beMentor" />
     </fragment>
     <fragment
@@ -90,4 +96,9 @@
         android:name="com.example.careerguide.Home.beMentor"
         android:label="fragment_be_mentor"
         tools:layout="@layout/fragment_be_mentor" />
+    <fragment
+        android:id="@+id/acceptedRequest"
+        android:name="com.example.careerguide.AcceptedRequest.acceptedRequest"
+        android:label="fragment_accepted_request"
+        tools:layout="@layout/fragment_accepted_request" />
 </navigation>
