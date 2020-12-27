@@ -42,7 +42,7 @@ class acceptedRequest : Fragment() {
                 list=it
                 if (it!=null){
                     dapter= arAdapter(it,
-                        requireActivity(),
+                        requireContext(),
                         this)
                     ar_rv.apply {
                         adapter=dapter

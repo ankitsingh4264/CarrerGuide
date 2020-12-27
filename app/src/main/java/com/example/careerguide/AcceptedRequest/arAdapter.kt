@@ -9,9 +9,8 @@ import com.bumptech.glide.Glide
 import com.example.careerguide.R
 import com.example.careerguide.beans.Users
 import kotlinx.android.synthetic.main.ar_item.view.*
-import kotlinx.android.synthetic.main.pr_item.view.*
 
-class arAdapter(val list:ArrayList<Users>, val context: Context, val clickListener: acceptedRequest) : RecyclerView.Adapter<arAdapter.ViewHolder>() {
+class arAdapter(val list:ArrayList<Users>, val context: Context, val clickListener: onitemClick) : RecyclerView.Adapter<arAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.ar_item, parent, false)
@@ -29,7 +28,7 @@ class arAdapter(val list:ArrayList<Users>, val context: Context, val clickListen
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(clickListener: acceptedRequest, curruser: Users, position: Int,context: Context) {
+        fun bind(clickListener: onitemClick, curruser: Users, position: Int, context: Context) {
             itemView.ar_edt_name.setText(curruser.name)
             itemView.ar_edt_headline.setText(curruser.fieldsMentoring)
             if(curruser.imagepath!=null)
@@ -38,7 +37,7 @@ class arAdapter(val list:ArrayList<Users>, val context: Context, val clickListen
                         .into(itemView.ar_profile_img)
             }
             itemView.button_call.setOnClickListener {
-                clickListener.onItemClicked(true)
+                curruser.phone?.let { it1 -> clickListener.onItemClicked(it1) }
             }
 
         }
@@ -47,7 +46,7 @@ class arAdapter(val list:ArrayList<Users>, val context: Context, val clickListen
     }
 
     interface onitemClick {
-        fun onItemClicked(position: Int, accepted: Boolean)
+        fun onItemClicked( phone:String)
     }
 
 }
