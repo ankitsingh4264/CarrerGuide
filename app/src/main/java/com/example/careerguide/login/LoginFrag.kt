@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.careerguide.MainActivity
 import com.example.careerguide.R
+import com.example.careerguide.Utils
 import com.example.careerguide.beans.Users
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -66,6 +67,7 @@ class LoginFrag : Fragment() {
                 if (it == true) {
 
                     sendOtp("+91"+phone!!)
+                    Utils.fromsignup=false
                     view.findNavController().navigate(R.id.otpFragment)
 
                 } else {

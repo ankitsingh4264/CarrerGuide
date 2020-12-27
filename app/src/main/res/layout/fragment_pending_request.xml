@@ -3,10 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".pendingRequest.PendingRequestFragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:text="Pending Requests"
+        android:id="@+id/pr_top"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        ></TextView>
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
+    android:layout_below="@+id/pr_top"
     android:layout_height="match_parent"
     android:id="@+id/pr_rv"
     ></androidx.recyclerview.widget.RecyclerView>

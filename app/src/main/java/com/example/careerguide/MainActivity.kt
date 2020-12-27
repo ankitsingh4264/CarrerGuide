@@ -91,6 +91,10 @@ class MainActivity : AppCompatActivity() {
                     setinVisibleNav()
                     navController.navigate(R.id.pendingRequestFragment)
                 }
+                R.id.nav_logout->{
+                    FirebaseAuth.getInstance().signOut()
+                    navController.navigate(R.id.loginOrSignUp)
+                }
             }
             drawerlayout.closeDrawer(GravityCompat.START)
             navigation.setCheckedItem(item.itemId)

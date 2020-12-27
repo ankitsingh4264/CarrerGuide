@@ -27,11 +27,13 @@ class FirebaseDataRepository {
                     //he signed-in user's information
                     userid=it.result!!.user!!.uid
                    users.id=userid
-                    firestoreDB.collection("users").document(userid!!).set(users).addOnSuccessListener {
+                    if (Utils.fromsignup)
+                     firestoreDB.collection("users").document(userid!!).set(users).addOnSuccessListener {
                         result.value=true;
                     }.addOnFailureListener{
                         result.value=false
                     }
+                    else result.value=true
                 } else {
                     result.value=false
                 }
@@ -50,6 +52,7 @@ class FirebaseDataRepository {
     fun getcurruser():MutableLiveData<Users>{
         val data:MutableLiveData<Users> = MutableLiveData()
         val id= auth.currentUser?.uid
+        if (id==null) return data
         firestoreDB.collection("users").document(id!!).get().addOnSuccessListener {
             data.value=it.toObject(Users::class.java)
         }
