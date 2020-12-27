@@ -37,13 +37,15 @@ class PendingRequestFragment : Fragment() ,prAdapter.onitemClick{
             exmentlist=it
             if (it!=null){
                 Log.i("ankit",it.toString()+" in it")
-                dapter= prAdapter(it,
-                requireContext(),
-                this)
-                pr_rv.apply {
-                    adapter=dapter
-                    layoutManager=
-                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+                if (requireActivity()!= null) {
+                    dapter = prAdapter(it,
+                            requireActivity(),
+                            this)
+                    pr_rv.apply {
+                        adapter = dapter
+                        layoutManager =
+                                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    }
                 }
             }
         })

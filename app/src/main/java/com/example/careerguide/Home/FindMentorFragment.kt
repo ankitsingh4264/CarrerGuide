@@ -18,6 +18,7 @@ import com.example.careerguide.beans.Users
 import com.example.careerguide.login.loginViewModel
 import com.google.firebase.firestore.auth.User
 import kotlinx.android.synthetic.main.fragment_find_mentor.*
+import kotlinx.android.synthetic.main.fragment_mentor.*
 import kotlinx.android.synthetic.main.fragment_mentor.view.*
 import kotlinx.android.synthetic.main.mentor_item.*
 import kotlinx.android.synthetic.main.mentor_item.view.*
@@ -99,7 +100,7 @@ class FindMentorFragment : Fragment() ,MentorsRV.onitemClick{
             null
         )
         if (curr.imagepath!=null){
-            Glide.with(requireActivity()).load(curr.imagepath).into(img_profile_mentor)
+            Glide.with(requireActivity()).load(curr.imagepath).into( mDialogView.img_profile_mentor_dialog)
         }
         mDialogView.edt_mentor_field.setText(curr.fieldsMentoring)
         mDialogView.edt_mentor_name.setText(curr.name)

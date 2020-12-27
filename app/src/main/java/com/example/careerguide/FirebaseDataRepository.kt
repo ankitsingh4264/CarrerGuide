@@ -183,15 +183,18 @@ class FirebaseDataRepository {
 
 
     }
-    fun createpr(mentorid:String){
-        val id=auth.currentUser!!.uid
-
-        firestoreDB.collection("users").document(mentorid).collection("pendingRequests").document(id).set(
-                mapOf(
-                        "accepted" to -1
-                )) .addOnSuccessListener {
-            Log.i("ankit","pr created")
-        }
+    fun createpr(mentorid:String) {
+        val id = auth.currentUser!!.uid
+        val data = hashMapOf(
+                "accepted" to -1
+        )
+        val ref = firestoreDB.collection("users").document(mentorid)
+        ref.get().addOnSuccessListener {
+            Log.i("ankit","${it.toObject(Users::class.java)}")
+                    it.reference.collection("pendingRequests").document(id).set(data).addOnSuccessListener {
+                        Log.i("ankit", "pr created")
+                    }
+                }
     }
 
     fun getuserar(): MutableLiveData<ArrayList<Users>> {
