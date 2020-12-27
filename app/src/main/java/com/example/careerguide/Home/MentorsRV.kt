@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.careerguide.R
 import com.example.careerguide.beans.Users
 import kotlinx.android.synthetic.main.mentor_item.view.*
+import kotlinx.android.synthetic.main.pr_item.view.*
 
 class MentorsRV(val list:ArrayList<Users>,val context:Context,val clickListener: onitemClick) : RecyclerView.Adapter<MentorsRV.ViewHolder>() {
 
@@ -34,6 +35,7 @@ class MentorsRV(val list:ArrayList<Users>,val context:Context,val clickListener:
             itemView.btnbookappt.setOnClickListener {
                 clickListener.onItemClicked(position)
             }
+
 
         }
 

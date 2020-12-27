@@ -14,10 +14,13 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
+import com.example.careerguide.Home.FindMentorVIewModel
 import com.example.careerguide.Profile.profilemvvm
 import com.example.careerguide.beans.Users
 import com.example.careerguide.login.LoginFrag.Companion.phone
@@ -28,22 +31,34 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.drawerlayout
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.header.*
+import kotlinx.android.synthetic.main.header.view.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var mainViewModel: MainViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//
-//        var mUserDetail: MutableLiveData<Users> = MutableLiveData()
-//        mUserDetail=FirebaseDataRepository().getUserDetails()
-//        mUserDetail.observe(
-//            this
-//        ) {
-//            //text_nav_name.setText(it.name)
-//            text_nav_phone.setText(it.phone)
-//        }
+
+        mainViewModel= ViewModelProvider(this).get(MainViewModel::class.java)
+
+         mainViewModel.getcurruser()
+        mainViewModel.musers.observe(this,
+        Observer {
+            val navview=navigation.getHeaderView(0)
+            navview.text_nav_name.setText(it.name)
+            navview.text_nav_phone.setText(it.phone)
+
+            if (it.imagepath != null && it?.imagepath != "") {
+
+                    Glide.with(this).load(it?.imagepath)
+                            .into(navview.img_profile)
+
+            }
+        })
+
 
 
         toggle=  ActionBarDrawerToggle(
@@ -72,9 +87,9 @@ class MainActivity : AppCompatActivity() {
 //                    setinVisibleNav()
                     navController.navigate(R.id.findMentorFragment)
                 }
-                R.id.nav_be_mentor->{
-//                    setinVisibleNav()
-                    navController.navigate(R.id.beMentor)
+                R.id.nav_pr->{
+                    setinVisibleNav()
+                    navController.navigate(R.id.pendingRequestFragment)
                 }
             }
             drawerlayout.closeDrawer(GravityCompat.START)

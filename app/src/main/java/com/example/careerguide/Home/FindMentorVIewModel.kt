@@ -18,4 +18,7 @@ class FindMentorVIewModel: ViewModel() {
     fun getMentor(field: String){
         mMentors=FirebaseDatabase.getMentor(field)
     }
+    fun createpr(id:String){
+        FirebaseDatabase.createpr(id)
+    }
 }

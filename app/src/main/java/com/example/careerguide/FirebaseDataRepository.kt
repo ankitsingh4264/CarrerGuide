@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.storage.FirebaseStorage
 import java.util.ArrayList
 
@@ -22,8 +23,10 @@ class FirebaseDataRepository {
         auth.signInWithCredential(credential)
             .addOnCompleteListener { it->
                 if (it.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
+                    // Sign in success, update UI with t
+                    //he signed-in user's information
                     userid=it.result!!.user!!.uid
+                   users.id=userid
                     firestoreDB.collection("users").document(userid!!).set(users).addOnSuccessListener {
                         result.value=true;
                     }.addOnFailureListener{
@@ -43,6 +46,14 @@ class FirebaseDataRepository {
                     exist.value = it.size()>0
                 }
         return exist
+    }
+    fun getcurruser():MutableLiveData<Users>{
+        val data:MutableLiveData<Users> = MutableLiveData()
+        val id= auth.currentUser?.uid
+        firestoreDB.collection("users").document(id!!).get().addOnSuccessListener {
+            data.value=it.toObject(Users::class.java)
+        }
+        return data
     }
 
     fun getCategory():MutableLiveData<ArrayList<String>>{
@@ -115,7 +126,7 @@ class FirebaseDataRepository {
                         .update(
                                 mapOf(
                                         path to it.toString()
-                                        )
+                                )
                         )
             }
         }
@@ -125,18 +136,32 @@ class FirebaseDataRepository {
         val id=auth.currentUser!!.uid
         val data:MutableLiveData<ArrayList<Users>> = MutableLiveData()
 
-        firestoreDB.collection("users").document(id).collection("pendingRequests").whereEqualTo("accepted",-1).get()
-            .addOnSuccessListener {
-                val temp:ArrayList<Users> = ArrayList()
-                val sz=it.size();
-                for (doc in it){
-                    val uid=doc.id
-                    firestoreDB.collection("users").document(uid).get().addOnSuccessListener {
-                        it.toObject(Users::class.java)?.let { it1 -> temp.add(it1) }
-                        if (temp.size==sz) data.value=temp
+
+        firestoreDB.collection("users").document(id).collection("pendingRequests").whereEqualTo("accepted",-1).addSnapshotListener{
+            it, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                return@addSnapshotListener
+            }
+            val sz=it!!.size();
+            val temp:ArrayList<Users> = ArrayList()
+
+
+            if (temp.size==sz) {
+                data.value=temp
+            }
+            for (doc in it){
+                val uid=doc.id
+                firestoreDB.collection("users").document(uid).get().addOnSuccessListener {
+                    it.toObject(Users::class.java)?.let { it1 -> temp.add(it1) }
+                    if (temp.size==sz) {
+                        data.value=temp
                     }
                 }
             }
+
+        }
+
         return data
     }
     fun updateuserpr(userid:String,accepted:Int){
@@ -145,14 +170,25 @@ class FirebaseDataRepository {
         firestoreDB.collection("users").document(userid).collection("acceptedRequests").document(id).set(
             mapOf(
                 "accepted" to 1
-            ))
+            )).addOnSuccessListener {
+        }
 
-        firestoreDB.collection("users").document(id).collection("pendingRequests").document("userid")
+        firestoreDB.collection("users").document(id).collection("pendingRequests").document(userid)
             .update("accepted",accepted).addOnSuccessListener {
 
           }
 
 
+    }
+    fun createpr(mentorid:String){
+        val id=auth.currentUser!!.uid
+
+        firestoreDB.collection("users").document(mentorid).collection("pendingRequests").document(id).set(
+                mapOf(
+                        "accepted" to -1
+                )) .addOnSuccessListener {
+            Log.i("ankit","pr created")
+        }
     }
 
     fun getuserar(): MutableLiveData<ArrayList<Users>> {
