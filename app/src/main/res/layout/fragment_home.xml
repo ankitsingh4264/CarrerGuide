@@ -11,7 +11,6 @@
         android:layout_height="30dp"
         android:src="@drawable/ic_baseline_menu_24"
         android:layout_marginTop="20dp"
-        android:background="@color/purple_200"
         android:layout_marginLeft="20dp"
         />
 
@@ -65,25 +64,24 @@
             android:fontFamily="@font/manrope_medium"
             android:textColor="@color/purple_900"
             android:layout_marginHorizontal="16dp"
-
             />
 
-        <com.google.android.material.button.MaterialButton
+        <TextView
+            android:id="@+id/text3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_below="@id/text2"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:text="Okay"
-            android:textAlignment="textEnd"
+            android:text="CAREER GUIDE"
+            android:layout_marginTop="18dp"
+            android:textSize="16sp"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="20dp"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:id="@+id/btnokay"
+            android:layout_below="@id/text2"
             android:fontFamily="@font/manrope_medium"
             android:textColor="@color/purple_900"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="30dp"
             />
+
+
 
     </RelativeLayout>
 

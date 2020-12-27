@@ -26,8 +26,8 @@ class acceptedRequest : Fragment(),arAdapter.onitemClick {
     private var list:ArrayList<Users> = ArrayList()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_accepted_request, container, false)
@@ -38,19 +38,19 @@ class acceptedRequest : Fragment(),arAdapter.onitemClick {
         armvvm= ViewModelProvider(requireActivity()).get(arViewModel::class.java)
         armvvm.getusersar()
         armvvm.marusers.observe(requireActivity(),
-            Observer {
-                list=it
-                if (it!=null){
-                    dapter= arAdapter(it,
-                        requireActivity(),
-                        this)
-                    ar_rv.apply {
-                        adapter=dapter
-                        layoutManager=
-                            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+                Observer {
+                    list=it
+                    if (it!=null){
+                        dapter= arAdapter(it,
+                                requireActivity(),
+                                this)
+                        ar_rv.apply {
+                            adapter=dapter
+                            layoutManager=
+                                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+                        }
                     }
-                }
-            })
+                })
 
     }
 

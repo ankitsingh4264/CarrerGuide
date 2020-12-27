@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_less_edge">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_margin="20dp"
         android:layout_width="80dp"
@@ -60,6 +61,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@id/edt_mentor_about"
+        android:layout_marginBottom="10dp"
         ></Button>
 
 
