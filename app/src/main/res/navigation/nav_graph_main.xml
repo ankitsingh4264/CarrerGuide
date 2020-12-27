@@ -32,6 +32,12 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
+            android:id="@+id/action_homeFragment_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_homeFragment_to_profile2"
+            app:destination="@id/profile" />
+        <action
             android:id="@+id/action_homeFragment_to_findMentorFragment"
             app:destination="@id/findMentorFragment" />
         <action
@@ -40,6 +46,8 @@
         <action
             android:id="@+id/action_homeFragment_to_pendingRequestFragment"
             app:destination="@id/pendingRequestFragment" />
+            android:id="@+id/action_homeFragment_to_beMentor"
+            app:destination="@id/beMentor" />
     </fragment>
     <fragment
         android:id="@+id/loginOrSignUp"
@@ -77,4 +85,9 @@
         android:name="com.example.careerguide.pendingRequest.PendingRequestFragment"
         android:label="fragment_pending_request"
         tools:layout="@layout/fragment_pending_request" />
+    <fragment
+        android:id="@+id/beMentor"
+        android:name="com.example.careerguide.Home.beMentor"
+        android:label="fragment_be_mentor"
+        tools:layout="@layout/fragment_be_mentor" />
 </navigation>

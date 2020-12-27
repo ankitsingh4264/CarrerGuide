@@ -82,18 +82,11 @@ class FirebaseDataRepository {
         val userId = auth.currentUser!!.uid
         val userDetailsLiveDate = MutableLiveData<Users>()
 
-        val docRef = firestoreDB.collection("users").document(userId)
-        docRef.addSnapshotListener { snapshot, e ->
-            if (e != null) {
-                Log.w(TAG, "Listen failed.", e)
-                return@addSnapshotListener
-            }
+        firestoreDB.collection("users").document(userId).get().addOnSuccessListener {
 
-            if (snapshot != null && snapshot.exists()) {
-                Log.d(TAG, "Current data: ${snapshot.data}")
-                userDetailsLiveDate.value=snapshot.toObject(Users::class.java)
-            }
+                userDetailsLiveDate.value=it.toObject(Users::class.java)
         }
+
 
         return userDetailsLiveDate
     }
@@ -163,6 +156,25 @@ class FirebaseDataRepository {
           }
 
 
+    }
+
+    fun getuserar(): MutableLiveData<ArrayList<Users>> {
+        val id=auth.currentUser!!.uid
+        val data:MutableLiveData<ArrayList<Users>> = MutableLiveData()
+
+        firestoreDB.collection("users").document(id).collection("acceptedRequests").whereEqualTo("accepted",-1).get()
+            .addOnSuccessListener {
+                val temp:ArrayList<Users> = ArrayList()
+                val sz=it.size();
+                for (doc in it){
+                    val uid=doc.id
+                    firestoreDB.collection("users").document(uid).get().addOnSuccessListener {
+                        it.toObject(Users::class.java)?.let { it1 -> temp.add(it1) }
+                        if (temp.size==sz) data.value=temp
+                    }
+                }
+            }
+        return data
     }
 
 

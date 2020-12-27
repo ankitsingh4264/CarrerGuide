@@ -41,7 +41,7 @@ const val STORAGE_REQUEST_CODE = 400
 
 var imageURI: Uri? = null
 lateinit var auth : FirebaseAuth
-private lateinit var profilemvvm: profileViewModel
+lateinit var profilemvvm: profileViewModel
 
 class profile : Fragment() {
 
@@ -60,6 +60,7 @@ class profile : Fragment() {
         var use: Users = Users()
         auth = FirebaseAuth.getInstance()
 
+        var uris:String?=null
         profilemvvm = ViewModelProvider(requireActivity()).get(profileViewModel::class.java)
 
         profilemvvm.usersDetails()
@@ -70,18 +71,13 @@ class profile : Fragment() {
             edit_profile_phone.setText(it.phone)
             edit_profile_headline.setText(it.headline)
             if (it.imagepath != null && it?.imagepath != "") {
+                uris=it.imagepath
                 if (profile_image != null) {
                     Glide.with(requireContext()).load(it?.imagepath)
                         .into(profile_image!!)
                 }
             }
         }
-//        profilemvvm.usersDetails()
-//        profilemvvm.mUserDetail.observe(requireActivity(),
-//            {
-//                edit_profile_name.text=it.name
-//            }
-//        )
 
         button_upload.setOnClickListener {
             showImportImageDialog()
@@ -91,7 +87,9 @@ class profile : Fragment() {
             use = Users(
                 name = edit_profile_name.text.toString(),
                 phone = edit_profile_phone.text.toString(),
-                headline = edit_profile_headline.text.toString()
+                headline = edit_profile_headline.text.toString(),
+                imagepath = uris
+
             )
 
             profilemvvm.insertUser(use)
