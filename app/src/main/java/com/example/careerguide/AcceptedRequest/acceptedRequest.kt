@@ -19,15 +19,15 @@ import kotlinx.android.synthetic.main.fragment_accepted_request.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
-class acceptedRequest : Fragment() {
+class acceptedRequest : Fragment(),arAdapter.onitemClick {
 
     private lateinit var armvvm: arViewModel
     lateinit var dapter: arAdapter
     private var list:ArrayList<Users> = ArrayList()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_accepted_request, container, false)
@@ -38,37 +38,28 @@ class acceptedRequest : Fragment() {
         armvvm= ViewModelProvider(requireActivity()).get(arViewModel::class.java)
         armvvm.getusersar()
         armvvm.marusers.observe(requireActivity(),
-            Observer {
-                list=it
-                if (it!=null){
-                    dapter= arAdapter(it,
-                        requireContext(),
-                        this)
-                    ar_rv.apply {
-                        adapter=dapter
-                        layoutManager=
-                            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+                Observer {
+                    list=it
+                    if (it!=null){
+                        dapter= arAdapter(it,
+                                requireActivity(),
+                                this)
+                        ar_rv.apply {
+                            adapter=dapter
+                            layoutManager=
+                                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+                        }
                     }
-                }
-            })
+                })
 
     }
 
-    fun onItemClicked(accepted: Boolean) {
-        var tel:String?=null
-        armvvm.usersDetails()
-        armvvm.mUserDetail.observe(
-            requireActivity()
-        ) {
-            tel=it.phone
-        }
-        if(accepted)
-        {
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:"+tel)
-            startActivity(intent)
-        }
 
+
+    override fun onItemClicked(phone: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$phone")
+        startActivity(intent)
     }
 
 }
